@@ -13,9 +13,10 @@ using std::ios;
 using std::endl;
 using std::cout;
 
-#include "employee.h"
-#include "fixed.h"
-#include "hourly.h"
+#include "Employee.h"
+#include "Fixed.h"
+#include "Hourly.h"
+#include "BasePlusComission.h"
 
 
 int main()
@@ -36,10 +37,6 @@ int main()
 	cout << "Why is the output below not identical to the output above ?" << endl;
 	cout << endl;
 
-	//The outcomes will be different because of the print() member function used. 
-	//Above uses FixRatedWorker and HourlyWorker objects to call the respective print() member functions, above uses 	 //subclasses member function.
-	//While below Employee objects are used to call print(), uses the super class member function.
-
 	shared_ptr<Employee> employee1_ptr = make_shared<FixedRateWorker>("Ted", "Ramgasamy", 905.00);
 	shared_ptr<Employee> employee2_ptr = make_shared<HourlyWorker>("Louisa", "Mahlungu", 12.00, 52);
 
@@ -50,6 +47,52 @@ int main()
 	cout << " earned R " << employee2_ptr->earnings() << endl;	// dynamic binding
 
 	cout << endl;
+    cout<< "Worker with base salary and comission"<< endl << endl;
+    
+    shared_ptr<BasePlusComission> base_comission_ptr1 = make_shared<BasePlusComission>("Paul", "Matare", 1050.00, 30.00, 20);
+    shared_ptr<BasePlusComission> base_comission_ptr2 = make_shared<BasePlusComission>("Walusungu", "Makuwa", 950.00, 15.00, 50);
+    
+    base_comission_ptr1->print();
+    cout<< " earned R "<< base_comission_ptr1->earnings()<< endl<< endl;
+    
+    base_comission_ptr2->print();
+    cout<< " earned R "<<base_comission_ptr2->earnings()<< endl;
+    cout<< endl;
+    
+    cout<< "Change the base salary "<< endl<< endl;
+    
+    base_comission_ptr1->base(500.00);
+    base_comission_ptr2->base(500.00);
+    
+    base_comission_ptr1->print();
+    cout<< " earned R "<< base_comission_ptr1->earnings()<< endl<< endl;
+    
+     base_comission_ptr2->print();
+    cout<< " earned R "<< base_comission_ptr2->earnings()<< endl;
+
+    cout<< endl;
+    
+    cout<< "Change the comission"<< endl<< endl;
+    
+    base_comission_ptr1->comission(50.00);
+    base_comission_ptr2->comission(50.00);
+    
+    base_comission_ptr1->print();
+    cout<< " earned R "<< base_comission_ptr1->earnings()<< endl<< endl;
+    
+    base_comission_ptr2->print();
+    cout<< " earned R "<< base_comission_ptr2->earnings()<< endl<< endl;
+
+    cout<< endl<<"Change the items sold weekly"<< endl<< endl;
+    
+    base_comission_ptr1->items_weekly(35);
+    base_comission_ptr2->items_weekly(35);
+    
+    base_comission_ptr1->print();
+    cout<< " earned R "<< base_comission_ptr1->earnings()<< endl<< endl;
+    
+    base_comission_ptr2->print();
+    cout<< " earned R "<< base_comission_ptr2->earnings()<< endl<< endl;
 	return 0;
 }
 
