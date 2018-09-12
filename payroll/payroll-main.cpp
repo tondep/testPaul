@@ -36,6 +36,10 @@ int main()
 	cout << "Why is the output below not identical to the output above ?" << endl;
 	cout << endl;
 
+	//The outcomes will be different because of the print() member function used. 
+	//Above uses FixRatedWorker and HourlyWorker objects to call the respective print() member functions, above uses 	 //subclasses member function.
+	//While below Employee objects are used to call print(), uses the super class member function.
+
 	shared_ptr<Employee> employee1_ptr = make_shared<FixedRateWorker>("Ted", "Ramgasamy", 905.00);
 	shared_ptr<Employee> employee2_ptr = make_shared<HourlyWorker>("Louisa", "Mahlungu", 12.00, 52);
 
